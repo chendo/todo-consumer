@@ -10,3 +10,4 @@ test
 *.esproj
 public/uploads
 config/s3.yml
+config/credentials.todo.yml
