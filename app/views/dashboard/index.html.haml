@@ -1,0 +1,11 @@
+- if current_user
+  = link_to "Sign out", destroy_user_session_path
+- else
+  = link_to "Sign in", oauth_consumer_path("todo")
+
+- if @items
+  %h2 Items
+  %ol
+  - @items.each do |item|
+    %li= item.inspect
+        

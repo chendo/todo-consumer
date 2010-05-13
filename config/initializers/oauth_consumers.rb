@@ -3,11 +3,18 @@
 #
 # eg. :twitter => TwitterToken, :hour_feed => HourFeedToken etc.
 #
-# OAUTH_CREDENTIALS={
-#   :twitter=>{
-#     :key=>"",
-#     :secret=>""
-#   },
+OAUTH_CREDENTIALS={
+  :todo => {
+    :key=>"wZUopBhiamrur5xadrwe",
+    :secret=>"g7IzZaM99V4qiUcXeP3Z3KMg4uox7eFYIo1GwpYB",
+    :options=>{
+      :site=>"http://todo.local", 
+      :request_token_path => "/oauth/request_token",
+      :access_token_path => "/oauth/access_token",
+      :authorize_path => "/oauth/authorize"
+    }
+  }
+}
 #   :google=>{
 #     :key=>"",
 #     :secret=>"",
