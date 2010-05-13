@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation
   
   has_one :todo_token, :class_name => "TodoToken", :foreign_key => "user_id"
+  has_one :strings_token, :class_name => "StringToken", :foreign_key => "user_id"
 end

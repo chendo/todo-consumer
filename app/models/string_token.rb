@@ -1,0 +1,3 @@
+class StringToken < ConsumerToken
+  
+end
