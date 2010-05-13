@@ -5,8 +5,6 @@
 #
 OAUTH_CREDENTIALS={
   :todo => {
-    :key=>"wZUopBhiamrur5xadrwe",
-    :secret=>"g7IzZaM99V4qiUcXeP3Z3KMg4uox7eFYIo1GwpYB",
     :options=>{
       :site=> "http://todo-provider.heroku.com", 
       :request_token_path => "/oauth/request_token",
@@ -15,39 +13,18 @@ OAUTH_CREDENTIALS={
     }
   }
 }
-#   :google=>{
-#     :key=>"",
-#     :secret=>"",
-#     :scope=>"" # see http://code.google.com/apis/gdata/faq.html#AuthScopes
-#   },
-#   :agree2=>{
-#     :key=>"",
-#     :secret=>""
-#   },
-#   :fireeagle=>{
-#     :key=>"",
-#     :secret=>""
-#   },
-#   :hour_feed=>{
-#     :key=>"",
-#     :secret=>"",
-#     :options=>{ # OAuth::Consumer options
-#       :site=>"http://hourfeed.com" # Remember to add a site for a generic OAuth site
-#     }
-#   },
-#   :nu_bux=>{
-#     :key=>"",
-#     :secret=>"",
-#     :super_class=>"OpenTransactToken",  # if a OAuth service follows a particular standard 
-#                                         # with a token implementation you can set the superclass
-#                                         # to use
-#     :options=>{ # OAuth::Consumer options
-#       :site=>"http://nubux.heroku.com" 
-#     }
-#   }
-# }
-# 
-OAUTH_CREDENTIALS={
-} unless defined? OAUTH_CREDENTIALS
+credentials_yml = File.join(Rails.root, "config/credentials.#{service}.yml")
+
+credentials = if File.exists?(credentials_yml)
+  config = YAML.load_file(credentials_yml).with_indifferent_access
+  config[Rails.env] || config[service] || config[:all] || config[:global] || config
+else
+  {
+    :key    => ENV["#{service.upcase}_KEY"],
+    :secret => ENV["#{service.upcase}_SECRET"]
+  }.with_indifferent_access
+end
+OAUTH_CREDENTIALS[:todo][:key]    = credentials[:key]
+OAUTH_CREDENTIALS[:todo][:secret] = credentials[:secret]
 
 load 'oauth/models/consumers/service_loader.rb'
