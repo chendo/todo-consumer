@@ -1,0 +1,5 @@
+inherited_resources  
+formtastic  
+devise  --version 1.0.7
+oauth   --version 0.4.0
+oauth-plugin --version 0.3.14
