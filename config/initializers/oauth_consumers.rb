@@ -13,6 +13,8 @@ OAUTH_CREDENTIALS={
     }
   }
 }
+
+service = 'todo'
 credentials_yml = File.join(Rails.root, "config/credentials.#{service}.yml")
 
 credentials = if File.exists?(credentials_yml)
